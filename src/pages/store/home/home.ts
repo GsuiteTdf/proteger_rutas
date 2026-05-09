@@ -1,4 +1,6 @@
-﻿import { PRODUCTS, getCategories } from "../../../data/data";
+﻿import "../../../styles/store.css";
+
+import { PRODUCTS, getCategories } from "../../../data/data";
 import type { Product } from "../../../types/product";
 import { addToCart, getCart, getCartCount } from "../../../utils/cartStorage";
 
