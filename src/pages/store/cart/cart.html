@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Store | Carrito</title>
+    <link rel="stylesheet" href="/src/styles/store.css" />
   </head>
 
   <body>
@@ -17,32 +18,38 @@
       </div>
 
       <nav class="nav">
-        <a href="../home/home.html">Volver al catálogo</a>
+       <a href="../../../../index.html">Inicio</a>
+       <a href="../home/home.html">Catálogo</a>
+       <a href="./cart.html">Carrito <span id="cart-count">0</span></a>
+       <a href="../../admin/home/home.html">Panel Admin</a>
       </nav>
     </header>
 
-    <main class="cart-page">
-      <section class="cart-panel">
+    <main>
+      <section class="cart-section">
         <h2>Mi carrito</h2>
+        <p id="cart-feedback" class="feedback"></p>
 
-        <p id="empty-cart-message" class="feedback"></p>
+        <div id="cart-container" class="cart-container"></div>
 
-        <div id="cart-container"></div>
+        <section class="cart-summary">
+          <h3>Resumen de compra</h3>
+          <p>Cantidad total de productos: <strong id="summary-count">0</strong></p>
+          <p>Total a pagar: <strong id="summary-total">$0</strong></p>
 
-        <div class="cart-summary">
-          <p>Total:</p>
-          <strong id="cart-total">$0</strong>
-        </div>
-
-        <div class="cart-actions">
-          <button type="button" id="clear-cart-btn">Vaciar carrito</button>
-          <button type="button" disabled>Finalizar compra</button>
-        </div>
+          <div class="cart-actions">
+            <button type="button" id="clear-cart-button">Vaciar carrito</button>
+            <button type="button" id="checkout-button" disabled>
+              Finalizar compra
+            </button>
+          </div>
+        </section>
       </section>
     </main>
 
-    <footer class="footer">
+    <footer>
       <p>&copy; 2026 Food Store - Todos los derechos reservados.</p>
+      <p>Contacto: contacto@foodstore.com</p>
     </footer>
 
     <script type="module" src="./cart.ts"></script>

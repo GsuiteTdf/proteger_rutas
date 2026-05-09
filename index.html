@@ -1,65 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Store</title>
-    <link rel="stylesheet" href="./css/styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Store | Inicio</title>
+    <link rel="stylesheet" href="/src/styles/store.css" />
+  </head>
 
-<header>
-    <div class="logo">
-        <img src="./assets/Logo - Food Store.png" alt="Logo Food Store">
-        <h1>Food Store</h1>
-    </div>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <img src="/assets/Logo - Food Store.png" alt="Logo Food Store" />
+        <div>
+          <h1>Food Store</h1>
+          <p>Inicio de la aplicación</p>
+        </div>
+      </div>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="#">Mis Pedidos</a></li>
-            <li><a href="#">Carrito</a></li>
-            <li><a href="admin.html">Panel Admin</a></li>
-        </ul>
-    </nav>
-</header>
-
-    <hr>
-
-    <aside>
-        <h2>Categorías</h2>
-        <ul id="lista-categorias"></ul>
-    </aside>
+      <nav class="nav">
+        <a href="./index.html">Inicio</a>
+        <a href="./src/pages/store/home/home.html">Catálogo</a>
+        <a href="./src/pages/store/cart/cart.html">Carrito</a>
+        <a href="./src/pages/admin/home/home.html">Panel Admin</a>
+      </nav>
+    </header>
 
     <main>
+      <section class="search-section">
+        <h2>Bienvenido a Food Store</h2>
+        <p>
+          Aplicación frontend desarrollada con Vite y TypeScript para la gestión
+          de un catálogo de productos y carrito de compras persistente.
+        </p>
 
-        <section>
-            <h2>Buscar Productos</h2>
-            <form action="#" method="get">
-                <label for="busqueda">Buscar:</label>
-                <input type="search" id="busqueda" name="busqueda" placeholder="Ej: pizza pepperoni">
-                <button type="submit">Buscar</button>
-            </form>
-        </section>
+        <div class="cart-actions">
+          <a class="home-button" href="./src/pages/store/home/home.html">
+            Ir al catálogo
+          </a>
 
-        <hr>
+          <a class="home-button secondary" href="./src/pages/store/cart/cart.html">
+            Ver carrito
+          </a>
 
-        <section>
-            <h2>Productos Destacados</h2>
-            <section id="contenedor-productos"></section>
-        </section>
+          <a class="home-button secondary" href="./src/pages/admin/home/home.html">
+            Panel de administración
+          </a>
+        </div>
+      </section>
 
+      <section class="products-section">
+        <h2>Funcionalidades principales</h2>
+
+        <div class="products-grid">
+          <article class="product-card">
+            <h3>Catálogo</h3>
+            <p>Visualización dinámica de productos desde <strong>data.ts</strong>.</p>
+          </article>
+
+          <article class="product-card">
+            <h3>Búsqueda y filtros</h3>
+            <p>Permite buscar productos por nombre y filtrar por categoría.</p>
+          </article>
+
+          <article class="product-card">
+            <h3>Carrito</h3>
+            <p>Agregado de productos, cantidades, eliminación y total de compra.</p>
+          </article>
+
+          <article class="product-card">
+            <h3>Persistencia</h3>
+            <p>El carrito se mantiene guardado mediante <strong>localStorage</strong>.</p>
+          </article>
+        </div>
+      </section>
     </main>
 
-    <hr>
-
     <footer>
-        <p>&copy; 2026 Food Store - Todos los derechos reservados.</p>
-        <p>Contacto: contacto@foodstore.com</p>
+      <p>&copy; 2026 Food Store - Todos los derechos reservados.</p>
+      <p>Contacto: contacto@foodstore.com</p>
     </footer>
-
-    <script src="./js/data.js"></script>
-    <script src="./js/main.js"></script>
-
-</body>
+  </body>
 </html>

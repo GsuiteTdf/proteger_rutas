@@ -73,10 +73,14 @@ const getProductImage = (product: Product): string => {
 };
 
 const updateCartCounter = (): void => {
-  if (!cartCount) return;
-
   const cart = getCart();
-  cartCount.textContent = String(getCartCount(cart));
+  const count = getCartCount(cart);
+
+  document
+    .querySelectorAll<HTMLElement>("#cart-count")
+    .forEach((element) => {
+      element.textContent = String(count);
+    });
 };
 
 const renderCategories = (): void => {
@@ -147,23 +151,32 @@ const renderProducts = (): void => {
   if (!productsContainer || !activeFilter || !feedback) return;
 
   const filteredProducts = getFilteredProducts();
+  const cart = getCart();
 
   productsContainer.innerHTML = "";
 
   activeFilter.textContent =
     selectedCategory === "Todas"
       ? "Mostrando todos los productos"
-      : `Filtrando por categorÃ­a: ${selectedCategory}`;
+      : `Filtrando por categoría: ${selectedCategory}`;
 
   if (filteredProducts.length === 0) {
     feedback.textContent =
-      "No se encontraron productos que coincidan con la bÃºsqueda o el filtro seleccionado.";
+      "No se encontraron productos que coincidan con la búsqueda o el filtro seleccionado.";
     return;
   }
 
   feedback.textContent = "";
 
   filteredProducts.forEach((product) => {
+    const itemInCart = cart.find(
+      (cartItem) => cartItem.product.id === product.id
+    );
+
+    const quantityInCart = itemInCart?.cantidad ?? 0;
+    const availableStock = product.stock - quantityInCart;
+    const hasAvailableStock = availableStock > 0;
+
     const article = document.createElement("article");
     article.className = "product-card";
 
@@ -172,8 +185,10 @@ const renderProducts = (): void => {
       <h3>${product.nombre}</h3>
       <p>${product.descripcion}</p>
       <p class="price">Precio: ${formatPrice(product.precio)}</p>
-      <p class="stock">Stock disponible: ${product.stock}</p>
-      <button type="button">Agregar</button>
+      <p class="stock">Stock disponible: ${availableStock}</p>
+      <button type="button" ${!hasAvailableStock ? "disabled" : ""}>
+        ${hasAvailableStock ? "Agregar" : "Sin stock"}
+      </button>
     `;
 
     const addButton = article.querySelector<HTMLButtonElement>("button");
@@ -181,30 +196,39 @@ const renderProducts = (): void => {
     addButton?.addEventListener("click", () => {
       addToCart(product);
       updateCartCounter();
+      renderProducts();
 
-      feedback.textContent = `Agregaste "${product.nombre}" al carrito.`;
+      if (feedback) {
+        feedback.textContent = `Agregaste "${product.nombre}" al carrito.`;
 
-      setTimeout(() => {
-        if (feedback) {
-          feedback.textContent = "";
-        }
-      }, 1800);
+        setTimeout(() => {
+          if (feedback) {
+            feedback.textContent = "";
+          }
+        }, 1800);
+      }
     });
 
     productsContainer.appendChild(article);
   });
 };
-
-searchInput?.addEventListener("input", () => {
-  renderProducts();
-});
-
-searchForm?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  renderProducts();
-});
-
 renderCategories();
 renderProducts();
 updateCartCounter();
 
+window.addEventListener("pageshow", () => {
+  renderProducts();
+  updateCartCounter();
+});
+
+window.addEventListener("focus", () => {
+  renderProducts();
+  updateCartCounter();
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    renderProducts();
+    updateCartCounter();
+  }
+});
