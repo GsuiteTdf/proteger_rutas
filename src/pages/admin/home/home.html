@@ -1,59 +1,97 @@
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Food Store | Catálogo</title>
-<link rel="stylesheet" href="/src/styles/store.css" />
-</head>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Administración | Food Store</title>
+    <link rel="stylesheet" href="/src/styles/admin.css" />
+  </head>
 
   <body>
-    <header class="site-header">
+    <header class="admin-header">
       <div class="brand">
         <img src="/assets/Logo - Food Store.png" alt="Logo Food Store" />
         <div>
-          <h1>Food Store</h1>
-          <p>Catálogo de productos</p>
+          <h1>Panel de Administración</h1>
+          <p>Gestión interna de productos</p>
         </div>
       </div>
 
-      <nav class="nav">
-        <a href="./home.html">Catálogo</a>
-        <a href="../cart/cart.html">Carrito <span id="cart-count">0</span></a>
-        <a href="../../admin/home/home.html">Panel Admin</a>
+      <nav class="admin-nav">
+        <a href="../../store/home/home.html">Volver a la tienda</a>
+        <a href="../../store/cart/cart.html">Ver carrito</a>
+        <a href="../../auth/login/login.html">Cerrar sesión</a>
       </nav>
     </header>
 
-    <main>
-      <section class="categories-section">
-        <h2>Categorías</h2>
-        <div id="categories-container" class="categories"></div>
+    <main class="admin-main">
+      <section class="admin-card">
+        <div class="section-title">
+          <h2>Gestión de productos</h2>
+          <p>Listado administrativo de productos cargados desde <strong>src/data/data.ts</strong>.</p>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="products-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody id="admin-products-body"></tbody>
+          </table>
+        </div>
       </section>
 
-      <section class="search-section">
-        <h2>Buscar productos</h2>
+      <section class="admin-card">
+        <details>
+          <summary>Agregar Producto Rápido</summary>
 
-        <form id="search-form">
-          <label for="search-input">Buscar por nombre:</label>
-          <input
-            type="search"
-            id="search-input"
-            placeholder="Ej: pizza, hamburguesa, coca"
-          />
-          <button type="submit">Buscar</button>
-        </form>
-      </section>
+          <form class="product-form" action="#" method="post">
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input type="text" id="nombre" name="nombre" required />
+            </div>
 
-      <section class="products-section">
-        <h2>Productos destacados</h2>
-        <p id="active-filter">Mostrando todos los productos</p>
-        <p id="feedback" class="feedback"></p>
+            <div class="form-group">
+              <label for="precio">Precio:</label>
+              <input type="number" id="precio" name="precio" min="0" step="0.01" required />
+            </div>
 
-        <div id="products-container" class="products-grid"></div>
+            <div class="form-group">
+              <label for="stock">Stock inicial:</label>
+              <input type="number" id="stock" name="stock" min="0" required />
+            </div>
+
+            <div class="form-group">
+              <label for="categoria">Categoría:</label>
+              <select id="categoria" name="categoria" required>
+                <option value="">Seleccione una opción</option>
+                <option value="pizzas">Pizzas</option>
+                <option value="hamburguesas">Hamburguesas</option>
+                <option value="bebidas">Bebidas</option>
+                <option value="postres">Postres</option>
+                <option value="empanadas">Empanadas</option>
+                <option value="ensaladas">Ensaladas</option>
+              </select>
+            </div>
+
+            <button type="submit">Guardar Producto</button>
+          </form>
+        </details>
       </section>
     </main>
 
-    <footer>
-      <p>&copy; 2026 Food Store - Todos los derechos reservados.</p>
-      <p>Contacto: contacto@foodstore.com</p>
+    <footer class="admin-footer">
+      <p>Panel de Administración - Food Store v1.0</p>
     </footer>
 
     <script type="module" src="./home.ts"></script>

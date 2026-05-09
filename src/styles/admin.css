@@ -116,9 +116,9 @@ body {
   font-weight: bold;
 }
 
-.badge.available {
-  background-color: #e7f7ec;
-  color: #207a3c;
+.badge.unavailable {
+  background-color: #fdecea;
+  color: #a93226;
 }
 
 button {

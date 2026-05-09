@@ -1,83 +1,142 @@
-# Proyecto: Protección de Rutas (Educativo)
+# Food Store - Parcial 1 Programación III
 
-## ✍️ Descripción
+## Descripción
 
-Este es un proyecto de demostración creado con fines educativos para ilustrar un mecanismo básico de protección de rutas en el lado del cliente (frontend) utilizando **Vite** y **TypeScript**.
+Food Store es una aplicación frontend desarrollada con HTML5, CSS3, JavaScript, TypeScript y Vite.
 
-El objetivo es mostrar cómo se puede restringir el acceso a ciertas páginas según el rol de un usuario (por ejemplo, `ADMIN` o `CLIENT`).
+El proyecto fue realizado para la primera evaluación parcial de Programación III. La aplicación permite visualizar un catálogo dinámico de productos, buscar productos por nombre, filtrar por categorías y agregar productos a un carrito de compras con persistencia en `localStorage`.
 
----
+El desarrollo se realizó sobre el repositorio base provisto por la cátedra, el cual incluía una estructura previa de autenticación y protección de rutas con roles de usuario.
 
-## ⚠️ ¡Importante! Nivel de Seguridad
+## Funcionalidades implementadas
 
-La protección de rutas implementada en este proyecto **NO ES SEGURA** y no debe utilizarse en un entorno de producción.
+- Catálogo dinámico de productos.
+- Renderizado de productos desde `src/data/data.ts`.
+- Búsqueda de productos por nombre.
+- Filtrado de productos por categoría.
+- Agregado de productos al carrito.
+- Persistencia del carrito en `localStorage`.
+- Contador de productos agregados al carrito.
+- Vista de panel de administración.
+- Organización del código en carpetas `pages`, `types`, `utils`, `data` y `styles`.
 
-- **Razón**: La lógica de autenticación se basa en datos guardados en `localStorage` en el navegador del usuario.
-- **Riesgo**: Cualquier usuario con conocimientos técnicos básicos puede abrir las herramientas de desarrollador del navegador para inspeccionar, modificar o eliminar los datos de `localStorage`, obteniendo así acceso no autorizado a rutas protegidas.
+## Tecnologías utilizadas
 
-Este enfoque es útil únicamente para fines de aprendizaje y para prototipos de bajo riesgo. La seguridad real debe implementarse en el **backend**.
+- HTML5
+- CSS3
+- TypeScript
+- JavaScript
+- Vite
+- pnpm
+- localStorage
 
----
+## Estructura principal del proyecto
 
-## 🚀 Instalación y Uso
+```txt
+src/
+├── data/
+│   └── data.ts
+├── pages/
+│   ├── admin/
+│   │   └── home/
+│   │       ├── home.html
+│   │       └── home.ts
+│   ├── auth/
+│   │   ├── login/
+│   │   └── registro/
+│   ├── client/
+│   └── store/
+│       ├── home/
+│       │   ├── home.html
+│       │   └── home.ts
+│       └── cart/
+│           ├── cart.html
+│           └── cart.ts
+├── styles/
+│   ├── admin.css
+│   └── store.css
+├── types/
+│   ├── categoria.ts
+│   ├── product.ts
+│   ├── IUser.ts
+│   └── Rol.ts
+└── utils/
+    ├── auth.ts
+    ├── cartStorage.ts
+    ├── localStorage.ts
+    └── navigate.ts
+Instalación
 
-Se recomienda usar `pnpm` como gestor de paquetes para mayor eficiencia en el manejo de dependencias.
+Para instalar las dependencias del proyecto, ejecutar:
 
-### 1. Instalar pnpm
-
-Si no tienes `pnpm` instalado, puedes hacerlo fácilmente a través de `npm` (que viene con Node.js) ejecutando el siguiente comando en tu terminal:
-
-```bash
-npm install -g pnpm
-```
-
-### 2. Instalar Dependencias del Proyecto
-
-Una vez en la carpeta raíz del proyecto, instala las dependencias necesarias con `pnpm`:
-
-```bash
 pnpm install
-```
 
-### 3. Ejecutar el Proyecto
+Si pnpm no está instalado, puede instalarse con:
 
-Para iniciar el servidor de desarrollo de Vite, ejecuta:
+npm install -g pnpm
+Ejecución del proyecto
 
-```bash
+Para iniciar el servidor de desarrollo, ejecutar:
+
 pnpm dev
-```
 
-La aplicación estará disponible en la URL que aparezca en la terminal (generalmente `http://localhost:5173`).
+Luego abrir en el navegador la URL indicada por la terminal, normalmente:
 
----
+http://localhost:5173/
 
-## ⚙️ ¿Cómo Funciona la Protección de Rutas?
+Página principal del catálogo:
 
-El mecanismo es simple y se gestiona desde el código TypeScript en la carpeta `src/utils`:
+http://localhost:5173/src/pages/store/home/home.html
 
-1.  **Inicio de Sesión**: Cuando un usuario se "loguea", su información (incluido su rol) se guarda como un string JSON en `localStorage`.
-2.  **Carga de Página Protegida**: Cada vez que se intenta cargar una página protegida (ej. la página de Administrador), se ejecuta un script de verificación (`checkAuhtUser` en `src/utils/auth.ts`).
-3.  **Verificación**: El script comprueba:
-    - Si existe un usuario en `localStorage`. Si no, redirige al login.
-    - Si el rol del usuario guardado coincide con el rol requerido para acceder a esa página. Si no coincide, lo redirige a una página de acceso denegado o a su "home" correspondiente.
-4.  **Cierre de Sesión (Logout)**: Al cerrar sesión, la información del usuario se elimina de `localStorage`.
+Página del carrito:
 
----
+http://localhost:5173/src/pages/store/cart/cart.html
 
-## 📁 Estructura del Proyecto
+Panel de administración:
 
-```
-/
-├── src/
-│   ├── pages/                # Contiene las páginas de la aplicación
-│   │   ├── admin/            # Páginas solo para administradores
-│   │   ├── auth/             # Páginas de autenticación (login, registro)
-│   │   └── client/           # Páginas solo para clientes
-│   ├── types/                # Define las interfaces y tipos (IUser, Rol)
-│   └── utils/                # Lógica reutilizable
-│       ├── auth.ts           # Función principal de verificación de rol y sesión
-│       ├── localStorage.ts   # Funciones para leer/escribir en localStorage
-│       └── navigate.ts       # Función para redirigir al usuario
-├── package.json              # Dependencias y scripts
-└── README.md                 # Este archivo
-```
+http://localhost:5173/src/pages/admin/home/home.html
+Configuración de Vite
+
+Las páginas principales del parcial fueron registradas en vite.config.ts dentro de build.rollupOptions.input, especialmente:
+
+storeHome: resolve(__dirname, "src/pages/store/home/home.html"),
+storeCart: resolve(__dirname, "src/pages/store/cart/cart.html"),
+
+Esto permite que Vite incluya correctamente dichas páginas al momento de construir el proyecto.
+
+Datos del proyecto
+
+Los productos y categorías se encuentran definidos en:
+
+src/data/data.ts
+
+El archivo exporta:
+
+PRODUCTS
+getCategories()
+
+Estos datos son consumidos por el catálogo y por el panel de administración.
+
+Carrito de compras
+
+La lógica del carrito se encuentra en:
+
+src/utils/cartStorage.ts
+
+El carrito utiliza localStorage para mantener los productos agregados incluso si el usuario recarga la página.
+
+Nota sobre autenticación
+
+El repositorio base incluye una lógica educativa de autenticación y protección de rutas basada en localStorage.
+
+Esta implementación no debe considerarse segura para producción, ya que los datos guardados en localStorage pueden ser modificados desde las herramientas de desarrollador del navegador.
+
+Para una aplicación real, la autenticación y autorización deberían implementarse desde un backend seguro.
+
+Autor
+
+Gastón A. Cejas
+
+Tecnicatura Universitaria en Programación
+Programación III
+Primer Parcial
