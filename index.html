@@ -1,17 +1,65 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + TS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Store</title>
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
-
 <body>
-  <script>
-    window.location.href = 'src/pages/auth/login/login.html'
-  </script>
-</body>
 
+<header>
+    <div class="logo">
+        <img src="./assets/Logo - Food Store.png" alt="Logo Food Store">
+        <h1>Food Store</h1>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Mis Pedidos</a></li>
+            <li><a href="#">Carrito</a></li>
+            <li><a href="admin.html">Panel Admin</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <hr>
+
+    <aside>
+        <h2>Categorías</h2>
+        <ul id="lista-categorias"></ul>
+    </aside>
+
+    <main>
+
+        <section>
+            <h2>Buscar Productos</h2>
+            <form action="#" method="get">
+                <label for="busqueda">Buscar:</label>
+                <input type="search" id="busqueda" name="busqueda" placeholder="Ej: pizza pepperoni">
+                <button type="submit">Buscar</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Productos Destacados</h2>
+            <section id="contenedor-productos"></section>
+        </section>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>&copy; 2026 Food Store - Todos los derechos reservados.</p>
+        <p>Contacto: contacto@foodstore.com</p>
+    </footer>
+
+    <script src="./js/data.js"></script>
+    <script src="./js/main.js"></script>
+
+</body>
 </html>

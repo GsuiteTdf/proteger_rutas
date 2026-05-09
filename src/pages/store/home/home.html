@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Store | Catálogo</title>
-    <link rel="stylesheet" href="/src/styles/store.css" />
   </head>
 
   <body>
@@ -20,42 +19,42 @@
       <nav class="nav">
         <a href="./home.html">Catálogo</a>
         <a href="../cart/cart.html">Carrito <span id="cart-count">0</span></a>
-        <a href="../../admin/home/home.html">Panel Admin</a>
       </nav>
     </header>
 
-    <main>
-      <section class="categories-section">
+    <main class="layout">
+      <aside class="sidebar">
         <h2>Categorías</h2>
         <div id="categories-container" class="categories"></div>
-      </section>
+      </aside>
 
-      <section class="search-section">
-        <h2>Buscar productos</h2>
+      <section class="content">
+        <section class="search-box">
+          <h2>Buscar productos</h2>
 
-        <form id="search-form">
           <label for="search-input">Buscar por nombre:</label>
           <input
             type="search"
             id="search-input"
             placeholder="Ej: pizza, hamburguesa, coca"
           />
-          <button type="submit">Buscar</button>
-        </form>
-      </section>
+        </section>
 
-      <section class="products-section">
-        <h2>Productos destacados</h2>
-        <p id="active-filter">Mostrando todos los productos</p>
-        <p id="feedback" class="feedback"></p>
+        <section>
+          <div class="section-title">
+            <h2>Productos</h2>
+            <p id="active-filter">Mostrando todos los productos</p>
+          </div>
 
-        <div id="products-container" class="products-grid"></div>
+          <p id="feedback" class="feedback"></p>
+
+          <div id="products-container" class="products-grid"></div>
+        </section>
       </section>
     </main>
 
-    <footer>
+    <footer class="footer">
       <p>&copy; 2026 Food Store - Todos los derechos reservados.</p>
-      <p>Contacto: contacto@foodstore.com</p>
     </footer>
 
     <script type="module" src="./home.ts"></script>

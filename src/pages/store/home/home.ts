@@ -1,8 +1,8 @@
-import { PRODUCTS, getCategories } from "../../../data/data";
+﻿import { PRODUCTS, getCategories } from "../../../data/data";
 import type { Product } from "../../../types/product";
 import { addToCart, getCart, getCartCount } from "../../../utils/cartStorage";
 
-console.log("home.ts del catálogo ejecutado correctamente");
+console.log("home.ts del catÃ¡logo ejecutado correctamente");
 
 const categoriesContainer = document.querySelector<HTMLDivElement>(
   "#categories-container"
@@ -43,7 +43,7 @@ const getProductImage = (product: Product): string => {
     "Pizza Especial 4 Quesos": "pizza-muzzarella.jpg",
     "Pizza Fugazzeta": "pizza-muzzarella.jpg",
 
-    "Hamburguesa Clásica": "burger-crispy.jpg",
+    "Hamburguesa ClÃ¡sica": "burger-crispy.jpg",
     "Hamburguesa BBQ Bacon": "hamburguesa-triple.jpg",
     "Hamburguesa Veggie": "hamburguesa-triple.jpg",
     "Hamburguesa Crispy Chicken": "burger-crispy.jpg",
@@ -58,9 +58,9 @@ const getProductImage = (product: Product): string => {
 
     "Empanadas de Carne x6": "papas-cheddar.jpg",
     "Empanadas de Pollo x6": "papas-cheddar.jpg",
-    "Empanadas de Jamón y Queso x6": "papas-cheddar.jpg",
+    "Empanadas de JamÃ³n y Queso x6": "papas-cheddar.jpg",
 
-    "Ensalada César": "limonada-fresh.jpg",
+    "Ensalada CÃ©sar": "limonada-fresh.jpg",
     "Ensalada Caprese": "limonada-fresh.jpg",
     "Ensalada Mixta": "limonada-fresh.jpg",
   };
@@ -151,11 +151,11 @@ const renderProducts = (): void => {
   activeFilter.textContent =
     selectedCategory === "Todas"
       ? "Mostrando todos los productos"
-      : `Filtrando por categoría: ${selectedCategory}`;
+      : `Filtrando por categorÃ­a: ${selectedCategory}`;
 
   if (filteredProducts.length === 0) {
     feedback.textContent =
-      "No se encontraron productos que coincidan con la búsqueda o el filtro seleccionado.";
+      "No se encontraron productos que coincidan con la bÃºsqueda o el filtro seleccionado.";
     return;
   }
 
@@ -205,3 +205,4 @@ searchForm?.addEventListener("submit", (event) => {
 renderCategories();
 renderProducts();
 updateCartCounter();
+
